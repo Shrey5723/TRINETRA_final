@@ -400,6 +400,7 @@ async def analyze_ensemble(file: UploadFile = File(...)):
 
 if __name__ == "__main__":
     import uvicorn
-    # Enforce Port 5000 per reliability instructions
-    print("--- SERVER LISTENING ON PORT 5001 ---")
-    uvicorn.run(app, host="0.0.0.0", port=5001)
+    # Use PORT from environment variable for Render deployment
+    port = int(os.environ.get("PORT", 5001))
+    print(f"--- SERVER LISTENING ON PORT {port} ---")
+    uvicorn.run(app, host="0.0.0.0", port=port)
